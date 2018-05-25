@@ -7,6 +7,12 @@ import store from './store'
 import router from './router'
 import { sync } from 'vuex-router-sync'
 import './components/global.js'
+import 'reveal.js/css/reveal.css'
+import 'reveal.js/css/theme/black.css'
+import VueImpress from 'vue-impress'
+import 'vue-impress/dist/vue-impress.css'
+
+Vue.use(VueImpress)
 
 Vue.config.productionTip = false
 const unsync = sync(store, router)

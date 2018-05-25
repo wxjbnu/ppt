@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reveal</title>
+    
+    <link href="https://cdn.bootcss.com/reveal.js/3.6.0/css/reveal.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/reveal.js/3.6.0/js/reveal.min.js"></script>
+		<script src="https://cdn.bootcss.com/reveal.js/3.6.0/plugin/markdown/markdown.min.js"></script>
+	</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+						<!-- <section>Single Horizontal Slide</section> -->
+						<section data-markdown>
+								<!-- <textarea data-template> -->
+									# 震惊！国内某数字消费资讯网站竟提供这种服务
+									* 🔧 效率工具推荐 & 生产力技巧
+									* 💰 这些产品值得买
+									* 🔭 这个技术你会懂
+									* 👍 什么是最好的？
+								<!-- </textarea> -->
+						</section>
+						<section>
+							<h3>A Cross Product Formula</h3>
+	
+							<div class="fragment">
+								\[\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
+								\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+								\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
+								\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0
+								\end{vmatrix}  \]
+							</div>
+						</section>
+						<section>
+							<h3>A Cross Product Formula</h3>
+		
+							\[\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
+							\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+							\frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \\
+							\frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0
+							\end{vmatrix}  \]
+						</section>
+						<section >
+							<pre><code data-trim data-noescape>
+						(def lazy-fib
+							(concat
+							 [0 1]
+							 <mark>((fn rfib [a b]</mark>
+										(lazy-cons (+ a b) (rfib b (+ a b)))) 0 1)))
+							</code></pre>
+						</section>
+            <section>
+                <section>Vertical Slide 1</section>
+                <section>Vertical Slide 2</section>
+            </section>
+        </div>
+        <div class="slides" data-background-color="#ff0000">
+            <section>Slide 3</section>
+            <section>Slide 4</section>
+        </div>
+    </div>
+    <!-- <script src="js/reveal.js"></script> -->
+    <script>
+        Reveal.initialize({
+					markdown: {
+						smartypants: true
+					}
+
+				});
+    </script>
+</body>
+</html>
