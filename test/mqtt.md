@@ -1,4 +1,5 @@
 https://segmentfault.com/a/1190000011117061
+https://github.com/mcxiaoke/mqtt/blob/master/mqtt/01-Introduction.md
 
 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）
 
