@@ -1,87 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>mqtt</title>
-    <!-- <script src="https://cdn.bootcss.com/impress.js/0.5.3/impress.min.js"></script> -->
-    <link href="https://cdn.bootcss.com/reveal.js/3.6.0/css/reveal.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/reveal.js/3.6.0/js/reveal.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>MQTT</title>
+	<!-- <script src="https://cdn.bootcss.com/impress.js/0.5.3/impress.min.js"></script> -->
+	<link href="./reveal.css" rel="stylesheet">
+	<script src="./reveal.min.js"></script>
+	<!-- <script src="https://cdn.bootcss.com/reveal.js/6.0/js/reveal.min.js"></script> -->
+	<style>
+		* {
+			text-align: left;
+		}
+		h2,h3{
+			padding: 20px 0!important;
+		}
+		p, li{
+			padding: 10px 0!important;
+		}
+		.more{
+			color: aqua;
+			text-decoration: aqua;
+		}
+	</style>
 </head>
+
 <body>
-    
 
-    <!-- <script>impress().init();</script> -->
-    <div class="reveal">
-        <div class="slides">
-            <section>
-                <h2>mqtt是什么</h2>
 
-            </section>
-            <section>
-                <div>
-                    <h3>服务质量 (QoS) </h3>
-                    <p>QoS 0:最多分发一次</p>
-                    <p>QoS 1: 至少分发一次</p>
-                    <p>QoS 2: 仅分发一次</p>
-                </div>
-            </section>
-            <!--  -->
-            <section>
-                <h2></h2>
-                <ul>
-                    <li>3.1 CONNECT – 连接服务端
-                        3.2 CONNACK – 确认连接请求
-                        3.3 PUBLISH – 发布消息
-                        3.4 PUBACK –发布确认
-                        3.5 PUBREC – 发布收到（QoS 2，第一步）
-                        3.6 PUBREL – 发布释放（QoS 2，第二步）
-                        3.7 PUBCOMP – 发布完成（QoS 2，第三步）
-                        3.8 SUBSCRIBE - 订阅主题
-                        3.9 SUBACK – 订阅确认
-                        3.10 UNSUBSCRIBE –取消订阅
-                        3.11 UNSUBACK – 取消订阅确认
-                        3.12 PINGREQ – 心跳请求
-                        3.13 PINGRESP – 心跳响应
-                        3.14 DISCONNECT –断开连接</li>
-                </ul>
-            </section>
-            <!-- topic -->
-            <section>
-                <h2>Topic 和 Topic Filters</h2>
-                <section>
-                    <div>
-                        <p>api/#</p>
-                        <p>api/login</p>
-                        <p>api/getname/wxj</p>
-                    </div>
-                </section>
-                <section>
-                    <div>
-                        <p>api/+</p>
-                        <p>api/login</p>
-                        <p>api/getname</p>
-                    </div>
-                </section>
-                <section>
-                    <div>
-                        <ul>
-                            <li>所有的主题名和主题过滤器必须至少包含一个字符 [MQTT-4.7.3-1]。
-                                主题名和主题过滤器是区分大小写的。
-                                主题名和主题过滤器可以包含空格。
-                                主题名或主题过滤器以前置或后置斜杠 “/” 区分。
-                                只包含斜杠 “/” 的主题名或主题过滤器是合法的。
-                                主题名和主题过滤器不能包含空字符 (Unicode U+0000) [Unicode] [MQTT-4.7.3-2]。
-                                主题名和主题过滤器是UTF-8编码字符串，它们不能超过65535字节 [MQTT-4.7.3-3]。</li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-        </div>
-    </div>
-    <script>
-        Reveal.initialize();
-    </script>
+	<!-- <script>impress().init();</script> -->
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<section>
+					<h2>MQTT是什么</h2>
+				</section>
+				<section>
+					<p>
+						是一种基于发布/订阅（publish/subscribe）模式的“轻量级”通讯协议，该协议构建于TCP/IP协议上
+					</p>
+				</section>
+			</section>
+			<!-- 身份 -->
+			<section>
+				<section>
+					<h2>MQTT三种身份</h2>
+				</section>
+				<section>
+					<h3>发布者（Publisher）</h3>
+					<p></p>
+				</section>
+				<section>
+					<h3>代理（Broker）</h3>
+					<p>消息代理是服务器</p>
+				</section>
+				<section>
+					<h3>订阅者（Subscriber）</h3>
+					<p></p>
+				</section>
+				<section>
+						其中，消息的发布者和订阅者都是客户端，消息代理是服务器，消息发布者可以同时是订阅者。
+				</section>
+			</section>
+			<!-- 消息 -->
+			<section>
+				<section>
+					<h2>MQTT传输的消息</h2>
+				</section>
+				<section>
+					<p>主题（Topic）</p>
+					<p>负载（payload）</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>MQTT数据包结构</h2>
+				</section>
+				<section>
+					<p>固定头（Fixed header）</p>
+					<p>可变头（Variable header）</p>
+					<p>消息体（payload）</p>
+					<p class="more">参考：https://itbilu.com/other/relate/4ysLCoYvx.html</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>名词解析</h2>
+				</section>
+				<section>
+					<h3>会话（Session）</h3>
+					<p>每个客户端与服务器建立连接后就是一个会话</p>
+					<p class="more">参考文章：https://www.jianshu.com/p/379b5dbb6233</p>
+				</section>
+				<section>
+					<h3>订阅（Subscribe）</h3>
+					<p>每个客户端与服务器建立连接后就是一个会话,订阅会与一个会话（Session）关联。一个会话可以包含多个订阅</p>
+				</section>
+				<section>
+					<h3>主题（Topic）</h3>
+					<p>Topic，可以理解为消息的类型，订阅者订阅（Subscribe）后，就会收到该主题的消息内容（payload）</p>
+				</section>
+				<!-- <section>
+					<h3>主题筛选器（Topic Filter）</h3>
+					<p></p>
+				</section> -->
+				<section>
+					<h3>负载（Payload）</h3>
+					<p>消息订阅者所具体接收的内容</p>
+				</section> 
+				<section>
+					<h3>服务质量 (QoS) </h3>
+					<p>QoS 0:最多分发一次</p>
+					<p>QoS 1: 至少分发一次</p>
+					<p>QoS 2: 仅分发一次</p>
+				</section>
+			</section>
+			
+			<!--  -->
+			<section>
+				<h2></h2>
+				<ul>
+					<li>1 CONNECT – 连接服务端</li>
+					<li>2 CONNACK – 确认连接请求</li>
+					<li>3 PUBLISH – 发布消息</li>
+					<li>4 PUBACK –发布确认</li>
+					<li>5 PUBREC – 发布收到（QoS 2，第一步）</li>
+					<li>6 PUBREL – 发布释放（QoS 2，第二步）</li>
+					<li>7 PUBCOMP – 发布完成（QoS 2，第三步）</li>
+					<li>8 SUBSCRIBE - 订阅主题</li>
+					<li>9 SUBACK – 订阅确认</li>
+					<li>10 UNSUBSCRIBE –取消订阅</li>
+					<li>11 UNSUBACK – 取消订阅确认</li>
+					<li>12 PINGREQ – 心跳请求</li>
+					<li>13 PINGRESP – 心跳响应</li>
+					<li>14 DISCONNECT –断开连接</li>
+				</ul>
+			</section>
+			<!-- topic -->
+			<section>
+				<h2>Topic 和 Topic Filters</h2>
+				<section>
+					<div>
+						<p>api/#</p>
+						<p>api/login</p>
+						<p>api/getname/wxj</p>
+					</div>
+				</section>
+				<section>
+					<div>
+						<p>api/+</p>
+						<p>api/login</p>
+						<p>api/getname</p>
+					</div>
+				</section>
+				<section>
+					<div>
+						<ul>
+							<li>所有的主题名和主题过滤器必须至少包含一个字符 [MQTT-4.7.3-1]。</li>
+							<li>主题名和主题过滤器是区分大小写的。</li>
+							<li>主题名和主题过滤器可以包含空格。</li>
+							<li>主题名或主题过滤器以前置或后置斜杠 “/” 区分。</li>
+							<li>只包含斜杠 “/” 的主题名或主题过滤器是合法的。</li>
+							<li>主题名和主题过滤器不能包含空字符 (Unicode U+0000) [Unicode] [MQTT-4.7.3-2]。</li>
+							<li>主题名和主题过滤器是UTF-8编码字符串，它们不能超过65535字节 [MQTT-4.7.3-3]。</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			
+			
+			
+			<section>
+				<section>
+					<h2>web端的mqtt</h2>
+				</section>
+				<section>
+					<section>
+						<!-- http(1.0和2.0差别很大) -->
+						<h2>mqtt与http</h2>
+					</section>
+					<section>
+						<p>HTTP是基于TCP/IP协议的，mqtt也是基于TCP/IP协议（也有基于udp协议的）</p>
+						<p>mqtt需要浏览器支持websocket</p>
+					</section>
+				</section>
+				<section>
+					<h2>javacrtipt库</h2>
+					<ul>
+						<li>1.(Eclipse Paho Client)[https://github.com/eclipse/paho.mqtt.javascript]</li>
+						<li>2.(Client)[https://github.com/mqttjs/MQTT.js]</li>
+						<li>3.mosca(broker nodejs) (http://www.mosca.io/docs/)</li>
+					</ul>
+				</section>
+			</section>
+
+		</div>
+	</div>
+	<script>
+		Reveal.initialize();
+	</script>
 </body>
+
 </html>

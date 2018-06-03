@@ -41,12 +41,12 @@ mqtt基于websocket
 mqtt库选择:
 1.(Eclipse Paho Client)[https://github.com/eclipse/paho.mqtt.javascript]
 2.(mqtt.js)[https://github.com/mqttjs/MQTT.js]
-3.mosca (http://www.mosca.io/docs/)
+3.mosca(broker nodejs) (http://www.mosca.io/docs/)
 
 
 
 我们的协议:其中type为1才有基础头
-version + type + 基础头(rid=xxxx&time=1555123).length + 扩展头({service: '/api/getname', topic: '/wxj'}).length + 扩展头({service: '/api/getname', topic: '/wxj'}) + 数据主体body({})
+version + type + 基础头(rid=xxxx&time=xxxx).length + 扩展头({service: '/api/getname', topic: '/wxj'}).length + 扩展头({service: '/api/getname', topic: '/wxj'}) + 数据主体body({})
 
 例子:
 1字节=8位二进制
@@ -75,7 +75,7 @@ JSON数据：{
 8字节:rid的二进制
 8字节:time的二进制
 a字节:head的json二进制字符串
-最后所有数据:body的json二进制字符串
+x字节:最后所有数据:body的json二进制字符串
 
 
 
@@ -85,3 +85,5 @@ a字节:head的json二进制字符串
 参考2[https://blog.csdn.net/JIESA/article/details/50635222]
 
 参考3[https://itbilu.com/other/relate/4kHBsx_Pg.html]
+
+参考4[https://www.jianshu.com/p/8315acec4e6b]
